@@ -93,6 +93,13 @@
 			</div>
 		</div>
 		
+		<div class="modal fade" id="edit_user">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				</div>
+			</div>
+		</div>
+		
 	<script>
 		$(function(){
 			$("#delete_user").on('hidden.bs.modal', function () {
@@ -120,7 +127,8 @@
 		                },
 		                {"data": null, 
 							render: function (row) {
-								var details = '<a class="btn btn-danger btn-sm" href="<?=base_url()?>admin/deleteUser/' + row.user_id + '" data-toggle="modal" data-target="#delete_user">Delete</a>';
+								var details = '<a class="btn btn-danger btn-sm" href="<?=base_url()?>admin/deleteUser/' + row.user_id + '" data-toggle="modal" data-target="#delete_user">Delete</a> &nbsp;&nbsp;'
+											+ '<a class="btn btn-primary btn-sm" href="<?=base_url()?>admin/updateUser/' + row.user_id + '" data-toggle="modal" data-target="#edit_user">Edit</a>';
 								return details;
 							}
 		                }

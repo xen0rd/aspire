@@ -26,5 +26,24 @@ class Admin extends CI_Controller{
 			$this->load->view('modals/delete_user_modal');
 		}
 	}
+	
+	public function updateUser($userId){
+		$this->load->model("admin_model");
+		$userId = $this->uri->segment(3);
+		
+		if($this->input->post(NULL, TRUE)){
+			if($this->admin_model->update($userId, $this->input->post(NULL, TRUE))){
+				$this->session->set_flashdata('success_message', "User has been updated successfully");
+			}
+			else{
+				$this->session->set_flashdata('error_message', "Failed to update user");
+			}
+			redirect(base_url() . "admin/user");
+		}
+		else{
+			$data['userDetails'] = $this->admin_model->userDetails($userId);
+			$this->load->view('modals/update_user_modal', $data);
+		}
+	}
 }
 ?>
